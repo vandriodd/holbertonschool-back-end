@@ -18,15 +18,15 @@ if __name__ == "__main__":
     filename = "todo_all_employees.json"
 
     for user in employee_info:
-        user_id = user.get("id")
+        user_id = user.get('id')
         consolidated_data[user_id] = []
         for todo in todo_data:
-            if user.get('id') == todo.get('userId'):
-                consolidated_data[id].append({
+            if user_id == todo.get('userId'):
+                consolidated_data[user_id].append({
                     "username": user.get("username"),
                     "task": todo.get("title"),
                     "completed": todo.get("completed")
                 })
 
     with open(filename, "w", encoding="utf-8") as file:
-        json.dump(consolidated_data, file, indent=4)
+        json.dump(consolidated_data, file)
