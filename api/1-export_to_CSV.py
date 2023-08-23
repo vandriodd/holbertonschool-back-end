@@ -13,15 +13,16 @@ if __name__ == "__main__":
     employee_id = argv[1]
 
     employee_info = requests.get(
-        f'https://jsonplaceholder.typicode.com/users/{id}')
+        f'https://jsonplaceholder.typicode.com/users/{employee_id}')
     employee_todo_list = requests.get(
-        f'https://jsonplaceholder.typicode.com/users/{id}/todos')
+        f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos')
 
-    name = employee_info.json()['username']
-    filename = f"{id}.csv"
+    name = employee_info.json().get('username')
+    filename = f"{employee_id}.csv"
     with open(filename, "w", encoding="utf-8") as file:
         for todo in employee_todo_list.json():
             completed_status = todo.get('completed')
             task_title = todo.get('title')
             file.write(
-                f'"{id}","{name}","{completed_status}","{task_title}"\n')
+                f'"{employee_id}","{name}",\
+                    "{completed_status}","{task_title}"\n')
